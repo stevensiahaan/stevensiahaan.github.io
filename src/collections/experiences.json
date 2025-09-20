@@ -1,23 +1,37 @@
 [
 	{
-		"dates": "June 2018 · Present",
-		"role": "Front-end Engineer",
-		"company": "Full Truck Alliance",
-		"description": "Responsible for customer service and CRM system front-end development.",
-		"logo": "/assets/images/experiences/fta.ico"
+		"dates": "2022-2024",
+		"role": "Flutter Developer",
+		"company": "Runchise",
+		"description": "Build a Point of Sales(POS) Application that will be used on multiple platforms: Android, iOS, and Windows for hundreds of clients. Integration with external devices such as Bluetooth Printer, iMin Device for Customer Display, and Cash Drawer. Build a Runchise Back Office Apps to support back-office management.",
+		"logo": "/assets/images/experiences/office.ico"
 	},
 	{
-		"dates": "July 2015 · June 2018",
-		"role": "Front-end Engineer",
-		"company": "YOHO!",
-		"description": "Responsible for mobile front-end development of e-commerce platform.",
-		"logo": "/assets/images/experiences/yoho.ico"
+		"dates": "2020-2022",
+		"role": "Mobile Developer",
+		"company": "Telkomsel",
+		"description": "Develop and maintain features such as Attendance, Request Permit, Ebook, Scheduling, and Score that will be used by 3 main roles: Student, Parent, and Teacher to support student school activities. Using BLoC Architectural Pattern and Firebase to support the development process.",
+		"logo": "/assets/images/experiences/office.ico"
 	},
 	{
-		"dates": "September 2014 · July 2015 ",
-		"role": "Node.JS Developer",
-		"company": "WuLian",
-		"description": "Intern, involved in the development of Internet of Things cloud systems.",
-		"logo": "/assets/images/experiences/wulian.ico"
+		"dates": "2018-2020",
+		"role": "Mobile Developer",
+		"company": "PT. Andal Software Sejahtera",
+		"description": "Refactor the entire application to follow Architectural Patterns while preserving legacy code to accommodate features like Attendance, Leave Requests, Permit Requests, etc. Construct the Andal Connect application utilizing the Flutter framework for a cross-platform application.",
+		"logo": "/assets/images/experiences/office.ico"
+	},
+	{
+		"dates": "2017-2018",
+		"role": "Android Developer",
+		"company": "PT. Baboo Teknologi Indonesia",
+		"description": "Developed an Android application allowing users to generate stories or books and access writings by others. Collaborated with Midtrans to integrate the payment system within the application. Utilized MVP Architectural Patterns and a technology stack including Firebase.",
+		"logo": "/assets/images/experiences/office.ico"
+	},
+	{
+		"dates": "2016-2017",
+		"role": "Android Developer",
+		"company": "Kargo.co.id",
+		"description": "Developed an Android application for a Tracking Management System, designed to assist Logistic Companies in efficiently managing their shipments. Designed and implemented an Android application tailored for Customers seeking to facilitate the delivery of their goods.",
+		"logo": "/assets/images/experiences/office.ico"
 	}
 ]
