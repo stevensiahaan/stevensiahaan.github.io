@@ -1,4 +1,11 @@
 [
+  {
+		"dates": "2025-Current",
+		"role": "Software Engineer",
+		"company": "PT. Berlian Sistem Informasi",
+		"description": "Developed and delivered multiple AI-driven solutions for the Mitsubishi Group, including an advanced conversational AI platform comparable to ChatGPT with enhanced features such as MOM automation, company-specific knowledge delivery, and multilingual document translation. Designed and built a mobile application integrated with AI to detect bird droppings on vehicles, enabling early prevention of paint damage. Successfully delivered multiple Proof-of-Concept (PoC) applications to support R&D and innovation initiatives.",
+		"logo": "/assets/images/experiences/office.ico"
+	},
 	{
 		"dates": "2022-2024",
 		"role": "Flutter Developer",
