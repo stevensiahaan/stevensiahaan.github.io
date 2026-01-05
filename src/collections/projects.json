@@ -1,5 +1,11 @@
 [
 	{
+		"name": "Wellsy",
+		"description": "Digitize gym body composition, track progress, set goals, and get AI-powered insights for a healthier life.",
+		"image": "/assets/images/projects/wellsy.png",
+		"url": "https://wellsy.site/"
+	},
+	{
 		"name": "Runchise POS",
 		"description": "A platform connecting entrepreneurs with franchise opportunities, providing resources and support for success in the franchising industry.",
 		"image": "/assets/images/projects/runchise.jpg",
