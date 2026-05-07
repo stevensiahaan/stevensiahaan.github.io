@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(mkdir -p /tmp/design)",
+      "Bash(cp \"D:\\\\Users\\\\bsi90950\\\\.claude\\\\projects\\\\D--Users-bsi90950-Projects-stevensiahaan-github-io\\\\5ff622c8-f319-4330-bbd3-6daf1ee7bd44\\\\tool-results\\\\webfetch-1778135063189-2c94yk.bin\" /tmp/design/pkg.tar.gz)",
+      "Read(//tmp/**)",
+      "Bash(tar -xzf pkg.tar.gz)",
+      "Bash(npm install *)",
+      "Bash(npx astro *)"
+    ]
+  }
+}

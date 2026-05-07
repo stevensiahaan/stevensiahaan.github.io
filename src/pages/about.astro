@@ -1,60 +1,17 @@
 ---
-import experiences from "../collections/experiences.json";
-import AboutExperience from "../components/about-experience.astro";
-import PageHeading from "../components/page-heading.astro";
-import Layout from "../layouts/main.astro";
 ---
 
-<Layout title="About Me">
-  <section class="relative z-20 max-w-2xl mx-auto my-12 px-7 lg:px-0">
-    <PageHeading
-      title="About Me"
-      description="Hello 👋 I'm Steven Jhonson Haposan Siahaan, a Mobile Developer from Jakarta, Indonesia. I'm passionate about creating impactful mobile applications and contributing to Indonesia's digital ecosystem."
-    />
-
-    <img src="/assets/images/about.jpg" class="relative z-30 w-full my-10 rounded-xl" />
-
-    <h2 class="mb-2 text-2xl font-bold dark:text-neutral-200">Short Bio</h2>
-    <p
-      class="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg"
-    >
-      Experienced Mobile Developer with a demonstrated history of working in the information technology and services industry. I aspire to create a significant impact on Indonesia's digital ecosystem. I am an enthusiastic and dedicated person, have a strong will to learn, and can easily adapt to new environments.
-    </p>
-
-    <h2
-      class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200"
-    >
-      Experience
-    </h2>
-    <div class="px-5 py-10">
-      {
-        experiences.map((experience) => {
-          return (
-            <div class="pb-10 border-l border-gray-200 last:border-l-0 dark:border-neutral-700">
-              <AboutExperience
-                dates={experience.dates}
-                role={experience.role}
-                company={experience.company}
-                description={experience.description}
-                logo={experience.logo}
-              />
-            </div>
-          )
-        })
-      }
-    </div>
-
-    <h2 class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200">Let's Connect</h2>
-    <p
-      class="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg"
-    >
-      If you want to stay up to date with my work be sure to <a
-        href="https://linkedin.com/in/stevensiahaan"
-        target="_blank"
-        class="text-indigo-600 underline">connect with me on LinkedIn</a
-      >, or you can send me an <a href="mailto:stevenjhsiahaan@gmail.com" class="text-indigo-600 underline"
-        >email</a
-      > and I'll be sure to get back to you.
-    </p>
-  </section>
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <meta http-equiv="refresh" content="0;url=/#about" />
+    <link rel="canonical" href="/#about" />
+    <meta name="robots" content="noindex" />
+    <script>window.location.replace("/#about");</script>
+  </head>
+  <body>
+    <a href="/#about">Continue to about →</a>
+  </body>
+</html>

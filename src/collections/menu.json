@@ -1,14 +1,18 @@
 [
 	{
-		"name": "Home",
-		"url": "/"
-	},
-	{
-		"name": "Projects",
-		"url": "/projects"
-	},
-	{
 		"name": "About",
-		"url": "/about"
+		"url": "/#about"
+	},
+	{
+		"name": "Work",
+		"url": "/#work"
+	},
+	{
+		"name": "Capabilities",
+		"url": "/#capabilities"
+	},
+	{
+		"name": "Experience",
+		"url": "/#experience"
 	}
 ]

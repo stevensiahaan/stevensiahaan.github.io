@@ -1,74 +1,810 @@
 ---
-import Button from "../components/button.astro";
-import Projects from "../components/home/projects.astro";
-import Separator from "../components/home/separator.astro";
 import Layout from "../layouts/main.astro";
+import projects from "../collections/projects.json";
+import experiences from "../collections/experiences.json";
+
+const workTags: Record<string, string[]> = {
+  Wellsy: ["Flutter", "AI", "Health"],
+  "Runchise POS": ["Flutter", "POS", "Bluetooth"],
+  "Skul.id": ["Flutter", "EdTech", "BLoC"],
+  "Andal Linkage": ["Flutter", "HRIS", "Geo"],
+  Baboo: ["Android", "Firebase", "Payments"],
+};
+
+const workBlurbs: Record<string, string> = {
+  Wellsy:
+    "Digitises gym body composition, tracks progress, and surfaces AI-powered insights.",
+  "Runchise POS":
+    "Cross-platform point-of-sale for hundreds of franchises — Android, iOS, Windows.",
+  "Skul.id":
+    "A school platform for attendance, grades, schedules & virtual classrooms.",
+  "Andal Linkage":
+    "Mobile HRIS for location-based attendance, leave, permits and medical claims.",
+  Baboo:
+    "A creative platform for reading, writing, and selling original stories & comics.",
+};
+
+const expTags: string[][] = [
+  ["AI", "Mobile", "CV"],
+  ["Flutter", "POS", "Hardware"],
+  ["Flutter", "EdTech", "BLoC"],
+  ["Flutter", "HRIS"],
+  ["Android", "Payments"],
+  ["Android", "Logistics"],
+];
+
+const expRewrites: { role: string; company: string; description: string }[] = [
+  {
+    role: "Software Engineer",
+    company: "PT. Berlian Sistem Informasi",
+    description:
+      "Delivered AI-driven solutions for the Mitsubishi Group — a ChatGPT-class conversational platform with MOM automation, company-specific knowledge delivery, and multilingual translation. Built a CV mobile app that detects bird-droppings on vehicles for paint-damage prevention. Shipped multiple R&D PoCs.",
+  },
+  {
+    role: "Flutter Developer",
+    company: "Runchise",
+    description:
+      "Built a cross-platform Point-of-Sale app for Android, iOS, and Windows — used by hundreds of franchises. Integrated Bluetooth printers, iMin customer displays, and cash drawers. Delivered the Runchise Back-Office app to support operations.",
+  },
+  {
+    role: "Mobile Developer",
+    company: "Telkomsel · Skul.id",
+    description:
+      "Owned features for Attendance, Permits, Ebook, Scheduling, and Score across three roles — Student, Parent, and Teacher. BLoC architecture on Flutter, Firebase for the moving parts.",
+  },
+  {
+    role: "Mobile Developer",
+    company: "PT. Andal Software Sejahtera",
+    description:
+      "Refactored the entire HRIS app onto clean architectural patterns while preserving legacy code paths. Built Andal Connect from scratch in Flutter for cross-platform delivery.",
+  },
+  {
+    role: "Android Developer",
+    company: "PT. Baboo Teknologi Indonesia",
+    description:
+      "Built an Android app for generating and reading user-written stories, with Midtrans payments integrated for the marketplace. MVP architecture, Firebase backend.",
+  },
+  {
+    role: "Android Developer",
+    company: "Kargo.co.id",
+    description:
+      "Designed and delivered a Tracking Management System for logistics operators, plus a customer-facing companion app for booking deliveries.",
+  },
+];
 ---
 
-<Layout title="Steven Siahaan">
-  <div
-    class="relative z-20 w-full max-w-4xl mx-auto mt-16 px-7 md:mt-24 lg:mt-32 xl:px-0"
-  >
-    <div class="flex flex-col items-center md:flex-row">
-      <div class="relative w-full md:w-1/2">
-        <h1
-          class="mb-5 text-4xl font-bold leading-tight md:text-4xl lg:text-6xl dark:text-white"
-        >
-          Hello, I'm Steven Siahaan.
+<Layout title="Steven Siahaan — Mobile Developer">
+  <main id="top">
+    <!-- ── Hero ── -->
+    <section class="hero">
+      <div class="frame">
+        <div class="hero-tag">
+          <span class="dot"></span>
+          Available for select work · Q3 ’26
+        </div>
+
+        <h1 class="display">
+          Mobile developer building thoughtful apps with a touch of <em>AI.</em>
         </h1>
-        <p class="mb-6 text-base text-neutral-600 dark:text-neutral-400">
-          I'm a Mobile Developer living in Indonesia. <br
-            class="hidden lg:block"
-          />I also manage products, work as an AI engineer, vibe coder, and automation specialist.
+
+        <p class="hero-sub">
+          I'm <strong>Steven Siahaan</strong> — a Jakarta-based engineer with a
+          decade of experience shipping Flutter, Android, and iOS products. Today
+          I split my time between mobile, AI engineering, and product work for
+          teams that want to ship the right thing well.
         </p>
-        <p class="mb-2 font-semibold text-neutral-800 dark:text-neutral-200">
-          I can help you out with:
-        </p>
-        <ul
-          class="py-2 space-y-[3px] text-sm list-disc list-inside text-neutral-500 dark:text-neutral-400"
-        >
-          <li>Flutter Development</li>
-          <li>Android/iOS Development</li>
-          <li>and more...</li>
-        </ul>
-        <Button
-          text="Follow me on LinkedIn"
-          link="https://linkedin.com/in/stevensiahaan"
-        />
-      </div>
-      <div
-        class="relative justify-end hidden w-full mt-10 md:flex md:pl-10 md:w-1/2 md:mt-0 md:translate-y-4 xl:translate-y-0"
-      >
-        <div class="relative z-50 w-full">
-          <div
-            class="absolute bottom-0 z-40 w-16 h-16 -translate-x-6 -translate-y-1/2 lg:top-auto top-0 lg:-translate-y-[330px] rounded-full"
+
+        <div class="cta-row">
+          <a class="btn" href="#work"
+            >View selected work <span class="arrow">→</span></a
           >
-            <span
-              class="relative z-20 flex items-center justify-center w-full h-full text-2xl border-8 border-white rounded-full dark:border-neutral-950 bg-neutral-100 dark:bg-neutral-900"
-            >
-              <span
-                class="flex items-center justify-center w-full h-full bg-white border border-dashed rounded-full dark:bg-neutral-950 border-neutral-300 dark:border-neutral-700"
-                >👋</span
-              >
-            </span>
-          </div>
-          <div class="relative z-30 px-10">
-            <img
-              src="/assets/images/photo.png"
-              loading="eager"
-              decoding="auto"
-              class="relative z-30 w-full aspect-[790/1189] md:max-w-md mx-auto dark:-translate-y-0.5"
-            />
-          </div>
-          <div
-            class="absolute bottom-0 right-0 z-20 w-full h-full lg:h-[420px] translate-x-0 -translate-y-px border border-dashed rounded-2xl bg-gradient-to-r dark:from-neutral-950 dark:via-black dark:to-neutral-950 from-white via-neutral-50 to-white border-neutral-300 dark:border-neutral-700"
-          >
+          <a class="btn btn-ghost" href="#contact">Start a project</a>
+        </div>
+
+        <div class="strip">
+          <span class="strip-label">Stack</span>
+          <div class="strip-items">
+            <span>Flutter</span>
+            <span>Dart</span>
+            <span>Kotlin</span>
+            <span>Swift</span>
+            <span>Firebase</span>
+            <span>Python</span>
+            <span>LLM Apps</span>
+            <span>BLoC</span>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <Separator text="Check out my projects" />
-  <Projects />
+    <!-- ── About ── -->
+    <section class="section" id="about">
+      <div class="frame">
+        <div class="section-head">
+          <span class="section-eyebrow">01 · About</span>
+          <h2 class="section-title">A short introduction.</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-body">
+            <p>
+              <strong
+                >I build mobile software that people use at work, every day.</strong
+              > Point-of-sale terminals across hundreds of franchises. School platforms
+              used by students, parents, and teachers. HRIS apps that quietly handle
+              attendance and leave for thousands of employees.
+            </p>
+            <p>
+              The throughline of ten years has been the same:
+              <strong>shipping cross-platform products that don't break</strong>
+              — and lately, doing it alongside AI tooling that makes teams faster.
+            </p>
+            <p>
+              I'm currently a Software Engineer at PT. Berlian Sistem Informasi,
+              where I deliver AI-driven solutions for the Mitsubishi Group —
+              including a ChatGPT-class conversational platform and
+              computer-vision mobile apps.
+            </p>
+          </div>
+
+          <aside class="about-side">
+            <dl>
+              <dt>Based in</dt>
+              <dd>Jakarta, Indonesia · UTC+7</dd>
+              <dt>Currently</dt>
+              <dd>Software Engineer, PT. Berlian Sistem Informasi</dd>
+              <dt>Focus</dt>
+              <dd>Mobile · AI · Product</dd>
+              <dt>Open to</dt>
+              <dd>Full-time, contract, advisory</dd>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Selected work ── -->
+    <section class="section" id="work">
+      <div class="frame">
+        <div class="section-head">
+          <span class="section-eyebrow">02 · Selected work</span>
+          <h2 class="section-title">Products I've helped <em>ship.</em></h2>
+        </div>
+
+        <div class="work-list">
+          {
+            projects.map((project, i) => (
+              <a
+                class="work"
+                href={project.url}
+                target={project.url.startsWith("http") ? "_blank" : undefined}
+                rel={project.url.startsWith("http") ? "noopener" : undefined}
+              >
+                <span class="work-num">{String(i + 1).padStart(2, "0")}</span>
+                <span class="work-name">{project.name}</span>
+                <span class="work-desc">
+                  {workBlurbs[project.name] ?? project.description}
+                </span>
+                <span class="work-tags">
+                  {(workTags[project.name] ?? []).map((t) => (
+                    <span class="tag">{t}</span>
+                  ))}
+                </span>
+                <span class="work-arrow">→</span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Capabilities ── -->
+    <section class="section" id="capabilities">
+      <div class="frame">
+        <div class="section-head">
+          <span class="section-eyebrow">03 · Capabilities</span>
+          <h2 class="section-title">What I can <em>help with.</em></h2>
+        </div>
+
+        <div class="caps">
+          <article class="cap">
+            <div class="cap-num">a.</div>
+            <h3 class="cap-title">Flutter, end-to-end</h3>
+            <p class="cap-desc">
+              Greenfield architecture (BLoC, Riverpod), hardware integrations —
+              Bluetooth printers, customer displays, cash drawers — and
+              production retail deployments.
+            </p>
+            <div class="cap-tags">
+              <span class="tag">Flutter</span><span class="tag">Dart</span
+              ><span class="tag">BLoC</span><span class="tag">Firebase</span>
+            </div>
+          </article>
+          <article class="cap">
+            <div class="cap-num">b.</div>
+            <h3 class="cap-title">Native Android &amp; iOS</h3>
+            <p class="cap-desc">
+              Kotlin and Swift when the platform demands it — payment
+              integrations, MVP/MVVM refactors, offline-first patterns.
+            </p>
+            <div class="cap-tags">
+              <span class="tag">Kotlin</span><span class="tag">Swift</span
+              ><span class="tag">Jetpack</span><span class="tag">Midtrans</span>
+            </div>
+          </article>
+          <article class="cap">
+            <div class="cap-num">c.</div>
+            <h3 class="cap-title">AI engineering</h3>
+            <p class="cap-desc">
+              Conversational platforms in the spirit of ChatGPT, retrieval over
+              private corpora, MOM automation, and multilingual document
+              translation.
+            </p>
+            <div class="cap-tags">
+              <span class="tag">LLM Apps</span><span class="tag">RAG</span
+              ><span class="tag">CV</span><span class="tag">Agents</span>
+            </div>
+          </article>
+          <article class="cap">
+            <div class="cap-num">d.</div>
+            <h3 class="cap-title">Product management</h3>
+            <p class="cap-desc">
+              Scoping, roadmapping, and standing between engineers and
+              stakeholders so the right thing ships — not just the loudest one.
+            </p>
+            <div class="cap-tags">
+              <span class="tag">Discovery</span><span class="tag">Specs</span
+              ><span class="tag">Delivery</span>
+            </div>
+          </article>
+          <article class="cap">
+            <div class="cap-num">e.</div>
+            <h3 class="cap-title">Rapid prototyping</h3>
+            <p class="cap-desc">
+              Fast, opinionated PoCs that prove the idea before the budget.
+              R&amp;D-grade software the team can demo on Monday.
+            </p>
+            <div class="cap-tags">
+              <span class="tag">Prototyping</span><span class="tag">R&amp;D</span
+              ><span class="tag">Demos</span>
+            </div>
+          </article>
+          <article class="cap">
+            <div class="cap-num">f.</div>
+            <h3 class="cap-title">Cross-platform delivery</h3>
+            <p class="cap-desc">
+              Single codebases across Android, iOS, and Windows — for franchise
+              networks where downtime is measured in revenue lost.
+            </p>
+            <div class="cap-tags">
+              <span class="tag">POS</span><span class="tag">Retail</span
+              ><span class="tag">Hardware I/O</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Experience ── -->
+    <section class="section" id="experience">
+      <div class="frame">
+        <div class="section-head">
+          <span class="section-eyebrow">04 · Experience</span>
+          <h2 class="section-title">Where I've <em>worked.</em></h2>
+        </div>
+
+        <div class="exp-list">
+          {
+            experiences.map((exp, i) => {
+              const rw = expRewrites[i] ?? {
+                role: exp.role,
+                company: exp.company,
+                description: exp.description,
+              };
+              return (
+                <article class="exp">
+                  <span class="exp-dates">{exp.dates}</span>
+                  <div>
+                    <h4 class="exp-role">{rw.role}</h4>
+                    <div class="exp-company">{rw.company}</div>
+                    <p class="exp-desc">{rw.description}</p>
+                  </div>
+                  <div class="exp-tags">
+                    {(expTags[i] ?? []).map((t) => (
+                      <span class="tag">{t}</span>
+                    ))}
+                  </div>
+                </article>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── Contact ── -->
+  <section class="contact" id="contact">
+    <div class="frame">
+      <div class="contact-grid">
+        <div>
+          <span class="section-eyebrow">05 · Contact</span>
+          <h2 class="contact-title">
+            Have something worth <em>building?</em>
+          </h2>
+          <p class="contact-blurb">
+            I take on a small number of mobile and AI engagements each year —
+            full-time, contract, or advisory. The fastest path is email; LinkedIn
+            works too.
+          </p>
+          <a class="btn" href="mailto:stevenjhsiahaan@gmail.com"
+            >Email me <span class="arrow">→</span></a
+          >
+        </div>
+        <div class="contact-channels">
+          <a class="ch" href="mailto:stevenjhsiahaan@gmail.com">
+            <span class="ch-label">Email</span>
+            <span class="ch-value">stevenjhsiahaan@gmail.com</span>
+            <span class="ch-arrow">↗</span>
+          </a>
+          <a
+            class="ch"
+            href="https://linkedin.com/in/stevensiahaan"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="ch-label">LinkedIn</span>
+            <span class="ch-value">/in/stevensiahaan</span>
+            <span class="ch-arrow">↗</span>
+          </a>
+          <a
+            class="ch"
+            href="https://github.com/stevensiahaan"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="ch-label">GitHub</span>
+            <span class="ch-value">@stevensiahaan</span>
+            <span class="ch-arrow">↗</span>
+          </a>
+          <a class="ch" href="#">
+            <span class="ch-label">Location</span>
+            <span class="ch-value">Jakarta, Indonesia</span>
+            <span class="ch-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  /* ─── Hero ─── */
+  .hero {
+    padding: 120px 0 100px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    padding: 6px 12px 6px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: var(--surface);
+  }
+  .hero-tag .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2eaa63;
+    box-shadow: 0 0 0 4px rgba(46, 170, 99, 0.18);
+  }
+  h1.display {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 0 0 32px;
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+  h1.display em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin: 0 0 40px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .strip {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    flex-wrap: wrap;
+  }
+  .strip-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .strip-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px 36px;
+    flex: 1;
+  }
+  .strip-items span {
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  /* ─── Section base ─── */
+  .section {
+    padding: 120px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 720px) {
+    .section {
+      padding: 72px 0;
+    }
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    align-items: baseline;
+    margin-bottom: 64px;
+  }
+  @media (max-width: 720px) {
+    .section-head {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(32px, 4.4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: 22ch;
+  }
+  .section-title :global(em) {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* ─── About ─── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+  }
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+  .about-body :global(p) {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+    max-width: 56ch;
+  }
+  .about-body :global(p strong) {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .about-side {
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 28px;
+    align-self: start;
+  }
+  .about-side dl {
+    margin: 0;
+  }
+  .about-side dt {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+  .about-side dt:first-child {
+    margin-top: 0;
+  }
+  .about-side dd {
+    margin: 4px 0 0;
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  /* ─── Capabilities ─── */
+  .caps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 900px) {
+    .caps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .caps {
+      grid-template-columns: 1fr;
+    }
+  }
+  .cap {
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 28px;
+    background: #fff;
+    transition: all 0.2s ease;
+  }
+  .cap:hover {
+    border-color: var(--ink);
+    transform: translateY(-2px);
+  }
+  .cap-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-bottom: 18px;
+    letter-spacing: 0.06em;
+  }
+  .cap-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 0 0 12px;
+  }
+  .cap-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 20px;
+  }
+  .cap-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* ─── Work list ─── */
+  .work-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .work {
+    display: grid;
+    grid-template-columns: 60px 1fr 280px 200px 60px;
+    gap: 32px;
+    padding: 28px 0;
+    align-items: center;
+    border-top: 1px solid var(--rule);
+    transition: padding 0.25s ease;
+  }
+  .work:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+  .work:hover {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .work:hover .work-name {
+    color: var(--accent);
+  }
+  .work:hover .work-arrow {
+    transform: translateX(8px);
+    color: var(--accent);
+  }
+  .work-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-mute);
+  }
+  .work-name {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1;
+    transition: color 0.2s ease;
+  }
+  .work-desc {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .work-arrow {
+    text-align: right;
+    font-size: 22px;
+    color: var(--ink-mute);
+    transition:
+      transform 0.25s ease,
+      color 0.2s ease;
+  }
+  @media (max-width: 1100px) {
+    .work {
+      grid-template-columns: 50px 1fr 50px;
+    }
+    .work-desc,
+    .work-tags {
+      display: none;
+    }
+  }
+
+  /* ─── Experience ─── */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .exp {
+    display: grid;
+    grid-template-columns: 140px 1fr 220px;
+    gap: 40px;
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .exp:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+  .exp-dates {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+  }
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.2;
+    margin: 0 0 4px;
+    font-weight: 400;
+  }
+  .exp-company {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .exp-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 0;
+  }
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-self: start;
+  }
+  @media (max-width: 900px) {
+    .exp {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .exp-tags {
+      display: none;
+    }
+  }
+
+  /* ─── Contact ─── */
+  .contact {
+    padding: 120px 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 64px;
+    align-items: end;
+  }
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+  .contact-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0 0 24px;
+    font-weight: 400;
+    max-width: 14ch;
+  }
+  .contact-title :global(em) {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .contact-blurb {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 50ch;
+    margin: 0 0 32px;
+  }
+  .contact-channels {
+    display: flex;
+    flex-direction: column;
+  }
+  .ch {
+    display: grid;
+    grid-template-columns: 90px 1fr 24px;
+    gap: 16px;
+    padding: 18px 4px;
+    border-top: 1px solid var(--rule);
+    align-items: center;
+    transition: padding 0.25s ease;
+  }
+  .ch:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+  .ch:hover {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .ch:hover .ch-arrow {
+    transform: translateX(4px);
+    color: var(--accent);
+  }
+  .ch-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .ch-value {
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .ch-arrow {
+    color: var(--ink-mute);
+    transition:
+      transform 0.2s ease,
+      color 0.2s ease;
+    font-size: 16px;
+  }
+</style>

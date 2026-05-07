@@ -1,7 +1,6 @@
 ---
 import Footer from "../components/footer.astro";
 import Header from "../components/header.astro";
-import SquareLines from "../components/square-lines.astro";
 const { title } = Astro.props;
 ---
 
@@ -12,33 +11,99 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
 
-    <!-- Used to add dark mode right away, adding here prevents any flicker -->
-    <script is:inline>
-      if (typeof Storage !== 'undefined') {
-        if (
-          localStorage.getItem('dark_mode') &&
-          localStorage.getItem('dark_mode') == 'true'
-        ) {
-          document.documentElement.classList.add('dark')
-        }
-      }
-    </script>
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png" />
 
-    <style>
-      .prose img {
-        border-radius: 20px;
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style is:global>
+      :root {
+        --bg: #ffffff;
+        --surface: #fafaf9;
+        --ink: #0e1116;
+        --ink-soft: #3a3f47;
+        --ink-mute: #8a8f99;
+        --rule: #e8e8e5;
+        --rule-2: #d5d5d0;
+        --accent: #1b3a6b;
+        --accent-2: #c0392b;
+
+        --serif: "Newsreader", Georgia, serif;
+        --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --mono: "Geist Mono", ui-monospace, Menlo, monospace;
       }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.5;
+      }
+      ::selection { background: var(--accent); color: #fff; }
+      a { color: inherit; text-decoration: none; }
+
+      .frame { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+      @media (max-width: 720px) { .frame { padding: 0 24px; } }
+
+      .meta {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: var(--ink-mute);
+      }
+
+      .section-eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-mute);
+      }
+
+      .tag {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.04em;
+        color: var(--ink-soft);
+        padding: 4px 8px;
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        background: var(--surface);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 22px;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 999px;
+        border: 1px solid var(--ink);
+        background: var(--ink);
+        color: #fff;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+      .btn:hover { background: var(--accent); border-color: var(--accent); }
+      .btn-ghost { background: transparent; color: var(--ink); border-color: var(--rule-2); }
+      .btn-ghost:hover { background: var(--surface); border-color: var(--ink); color: var(--ink); }
+      .btn .arrow { transition: transform 0.2s ease; }
+      .btn:hover .arrow { transform: translateX(3px); }
     </style>
-    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.png" />
-    <script src="../assets/css/main.css"></script>
-    <Fragment set:html={import.meta.env.HEADER_INJECT} />
   </head>
-  <body class="antialiased bg-white dark:bg-neutral-950">
-    <SquareLines />
+  <body>
     <Header />
     <slot />
     <Footer />
-    <script src="../assets/js/main.js"></script>
-    <Fragment set:html={import.meta.env.FOOTER_INJECT} />
   </body>
 </html>
