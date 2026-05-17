@@ -1,75 +1,87 @@
 ---
-import Layout from "../layouts/main.astro";
-import projects from "../collections/projects.json";
+import cv from "../collections/cv.json";
 import experiences from "../collections/experiences.json";
+import projects from "../collections/projects.json";
+import Layout from "../layouts/main.astro";
+
+if (!cv.fileId || cv.fileId.trim() === "") {
+	throw new Error(
+		"CV fileId is missing in src/collections/cv.json. Set it to the Google Drive file ID before building.",
+	);
+}
+
+const buildDriveDownloadUrl = (fileId: string): string =>
+	`https://drive.google.com/uc?export=download&id=${fileId}`;
+
+const cvDownloadUrl = buildDriveDownloadUrl(cv.fileId);
 
 const workTags: Record<string, string[]> = {
-  Wellsy: ["Flutter", "AI", "Health"],
-  "Runchise POS": ["Flutter", "POS", "Bluetooth"],
-  "Skul.id": ["Flutter", "EdTech", "BLoC"],
-  "Andal Linkage": ["Flutter", "HRIS", "Geo"],
-  Baboo: ["Android", "Firebase", "Payments"],
+	Wellsy: ["Flutter", "AI", "Health"],
+	"Runchise POS": ["Flutter", "POS", "Bluetooth"],
+	"Skul.id": ["Flutter", "EdTech", "BLoC"],
+	"Andal Linkage": ["Flutter", "HRIS", "Geo"],
+	Baboo: ["Android", "Firebase", "Payments"],
 };
 
 const workBlurbs: Record<string, string> = {
-  Wellsy:
-    "Digitises gym body composition, tracks progress, and surfaces AI-powered insights.",
-  "Runchise POS":
-    "Cross-platform point-of-sale for hundreds of franchises — Android, iOS, Windows.",
-  "Skul.id":
-    "A school platform for attendance, grades, schedules & virtual classrooms.",
-  "Andal Linkage":
-    "Mobile HRIS for location-based attendance, leave, permits and medical claims.",
-  Baboo:
-    "A creative platform for reading, writing, and selling original stories & comics.",
+	Wellsy:
+		"Digitises gym body composition, tracks progress, and surfaces AI-powered insights.",
+	"Runchise POS":
+		"Cross-platform point-of-sale for hundreds of franchises — Android, iOS, Windows.",
+	"Skul.id":
+		"A school platform for attendance, grades, schedules & virtual classrooms.",
+	"Andal Linkage":
+		"Mobile HRIS for location-based attendance, leave, permits and medical claims.",
+	Baboo:
+		"A creative platform for reading, writing, and selling original stories & comics.",
 };
 
 const expTags: string[][] = [
-  ["AI", "Mobile", "CV"],
-  ["Flutter", "POS", "Hardware"],
-  ["Flutter", "EdTech", "BLoC"],
-  ["Flutter", "HRIS"],
-  ["Android", "Payments"],
-  ["Android", "Logistics"],
+	["AI", "Mobile", "CV"],
+	["Flutter", "POS", "Hardware"],
+	["Flutter", "EdTech", "BLoC"],
+	["Flutter", "HRIS"],
+	["Android", "Payments"],
+	["Android", "Logistics"],
 ];
 
 const expRewrites: { role: string; company: string; description: string }[] = [
-  {
-    role: "AI Engineer & Senior Software Engineer",
-    company: "PT. Berlian Sistem Informasi",
-    description:
-      "Delivered AI-driven solutions for the Mitsubishi Group — a ChatGPT-class conversational platform with MOM automation, company-specific knowledge delivery, and multilingual translation. Built a CV mobile app that detects bird-droppings on vehicles for paint-damage prevention. Shipped multiple R&D PoCs.",
-  },
-  {
-    role: "Flutter Developer",
-    company: "Runchise",
-    description:
-      "Built a cross-platform Point-of-Sale app for Android, iOS, and Windows — used by hundreds of franchises. Integrated Bluetooth printers, iMin customer displays, and cash drawers. Delivered the Runchise Back-Office app to support operations.",
-  },
-  {
-    role: "Mobile Developer",
-    company: "Telkomsel · Skul.id",
-    description:
-      "Owned features for Attendance, Permits, Ebook, Scheduling, and Score across three roles — Student, Parent, and Teacher. BLoC architecture on Flutter, Firebase for the moving parts.",
-  },
-  {
-    role: "Mobile Developer",
-    company: "PT. Andal Software Sejahtera",
-    description:
-      "Refactored the entire HRIS app onto clean architectural patterns while preserving legacy code paths. Built Andal Connect from scratch in Flutter for cross-platform delivery.",
-  },
-  {
-    role: "Android Developer",
-    company: "PT. Baboo Teknologi Indonesia",
-    description:
-      "Built an Android app for generating and reading user-written stories, with Midtrans payments integrated for the marketplace. MVP architecture, Firebase backend.",
-  },
-  {
-    role: "Android Developer",
-    company: "Kargo.co.id",
-    description:
-      "Designed and delivered a Tracking Management System for logistics operators, plus a customer-facing companion app for booking deliveries.",
-  },
+	{
+		role: "AI Engineer & Senior Software Engineer",
+		company: "PT. Berlian Sistem Informasi",
+		description:
+			"Delivered AI-driven solutions for the Mitsubishi Group — a ChatGPT-class conversational platform with MOM automation, company-specific knowledge delivery, and multilingual translation. Built a CV mobile app that detects bird-droppings on vehicles for paint-damage prevention. Shipped multiple R&D PoCs.",
+	},
+	{
+		role: "Flutter Developer",
+		company: "Runchise",
+		description:
+			"Built a cross-platform Point-of-Sale app for Android, iOS, and Windows — used by hundreds of franchises. Integrated Bluetooth printers, iMin customer displays, and cash drawers. Delivered the Runchise Back-Office app to support operations.",
+	},
+	{
+		role: "Mobile Developer",
+		company: "Telkomsel · Skul.id",
+		description:
+			"Owned features for Attendance, Permits, Ebook, Scheduling, and Score across three roles — Student, Parent, and Teacher. BLoC architecture on Flutter, Firebase for the moving parts.",
+	},
+	{
+		role: "Mobile Developer",
+		company: "PT. Andal Software Sejahtera",
+		description:
+			"Refactored the entire HRIS app onto clean architectural patterns while preserving legacy code paths. Built Andal Connect from scratch in Flutter for cross-platform delivery.",
+	},
+	{
+		role: "Android Developer",
+		company: "PT. Baboo Teknologi Indonesia",
+		description:
+			"Built an Android app for generating and reading user-written stories, with Midtrans payments integrated for the marketplace. MVP architecture, Firebase backend.",
+	},
+	{
+		role: "Android Developer",
+		company: "Kargo.co.id",
+		description:
+			"Designed and delivered a Tracking Management System for logistics operators, plus a customer-facing companion app for booking deliveries.",
+	},
 ];
 ---
 
@@ -317,6 +329,29 @@ const expRewrites: { role: string; company: string; description: string }[] = [
         </div>
       </div>
     </section>
+
+    <!-- ── CV ── -->
+    <section class="section" id="cv">
+      <div class="frame">
+        <div class="section-head">
+          <span class="section-eyebrow">05 · CV</span>
+          <h2 class="section-title">Grab the <em>CV.</em></h2>
+        </div>
+
+        <div class="cv-grid">
+          <p class="cv-blurb">{cv.description}</p>
+          <a
+            class="btn"
+            href={cvDownloadUrl}
+            target="_blank"
+            rel="noopener"
+            aria-label={cv.ariaLabel}
+          >
+            {cv.label} <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ── Contact ── -->
@@ -324,7 +359,7 @@ const expRewrites: { role: string; company: string; description: string }[] = [
     <div class="frame">
       <div class="contact-grid">
         <div>
-          <span class="section-eyebrow">05 · Contact</span>
+          <span class="section-eyebrow">06 · Contact</span>
           <h2 class="contact-title">
             Have something worth <em>building?</em>
           </h2>
@@ -720,6 +755,28 @@ const expRewrites: { role: string; company: string; description: string }[] = [
     }
     .exp-tags {
       display: none;
+    }
+  }
+
+  /* ─── CV ─── */
+  .cv-grid {
+    display: grid;
+    grid-template-columns: 1.4fr auto;
+    gap: 64px;
+    align-items: center;
+  }
+  .cv-blurb {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0;
+  }
+  @media (max-width: 900px) {
+    .cv-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: start;
     }
   }
 
