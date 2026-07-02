@@ -1,5 +1,11 @@
 [
 	{
+		"name": "EIRA",
+		"description": "Internal generative AI platform for Mitsubishi Group: conversational chat, RAG-powered regulation search, image generation, automated meeting minutes, and document translation.",
+		"image": "/assets/images/projects/eira.png",
+		"url": "https://eira.bsi.co.id/"
+	},
+	{
 		"name": "Wellsy",
 		"description": "Digitize gym body composition, track progress, set goals, and get AI-powered insights for a healthier life.",
 		"image": "/assets/images/projects/wellsy.png",
