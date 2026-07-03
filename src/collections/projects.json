@@ -1,5 +1,11 @@
 [
 	{
+		"name": "Hedz Psikologi",
+		"description": "An online psychology assessment platform for intelligence, personality, and mental-health tests — from the Intelligence Structure Test to depression, anxiety, and stress screening — guided by professional psychologists.",
+		"image": "/assets/images/projects/hedz.png",
+		"url": "https://hedzpsikologi.com/"
+	},
+	{
 		"name": "EIRA",
 		"description": "Internal generative AI platform for Mitsubishi Group: conversational chat, RAG-powered regulation search, image generation, automated meeting minutes, and document translation.",
 		"image": "/assets/images/projects/eira.png",
