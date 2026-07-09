@@ -1,5 +1,11 @@
 [
 	{
+		"name": "WhatsApp Channel Automation",
+		"description": "An automated WhatsApp channel delivering daily AI news and updates — content sourced, summarized, and published end-to-end with Hermes and WAHA.",
+		"image": "/assets/images/projects/whatsapp-ai-channel.png",
+		"url": "https://whatsapp.com/channel/0029Vb5wchg60eBWja1uj83K"
+	},
+	{
 		"name": "Hedz Psikologi",
 		"description": "An online psychology assessment platform for intelligence, personality, and mental-health tests — from the Intelligence Structure Test to depression, anxiety, and stress screening — guided by professional psychologists.",
 		"image": "/assets/images/projects/hedz.png",
