@@ -23,6 +23,8 @@ const [hero, ...sideShots] = images;
 const isExternal = url.startsWith("http");
 const num = String(index + 1).padStart(2, "0");
 
+const cardClass = hero ? "work" : "work no-media";
+
 const mediaClass = [
 	"work-media",
 	frame === "wide" && "wide",
@@ -32,7 +34,7 @@ const mediaClass = [
 	.join(" ");
 ---
 
-<article class="work">
+<article class={cardClass}>
   {
     hero && (
       <div class={mediaClass}>
@@ -112,6 +114,11 @@ const mediaClass = [
   .work:hover .work-arrow {
     transform: translateX(6px);
     color: var(--accent);
+  }
+  /* a card with no screenshot hugs its content instead of being
+     stretched to match an image-bearing neighbour */
+  .work.no-media {
+    align-self: start;
   }
 
   /* ─── Media ─── */
