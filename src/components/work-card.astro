@@ -1,0 +1,259 @@
+---
+interface Props {
+	name: string;
+	description: string;
+	url: string;
+	frame?: "phone" | "wide";
+	images?: string[];
+	tags?: string[];
+	index: number;
+}
+
+const {
+	name,
+	description,
+	url,
+	frame = "phone",
+	images = [],
+	tags = [],
+	index,
+} = Astro.props;
+
+const [hero, ...sideShots] = images;
+const isExternal = url.startsWith("http");
+const num = String(index + 1).padStart(2, "0");
+
+const mediaClass = [
+	"work-media",
+	frame === "wide" && "wide",
+	sideShots.length === 0 && "solo",
+]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<article class="work">
+  {
+    hero && (
+      <div class={mediaClass}>
+        <div class={frame === "wide" ? "screen" : "phone"}>
+          <img src={hero} alt={`${name} — screenshot`} loading="lazy" />
+        </div>
+        {sideShots.length > 0 && (
+          <div class="side-shots">
+            {sideShots.map((src) => (
+              <img class="side-shot" src={src} alt="" loading="lazy" />
+            ))}
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  <div class="work-body">
+    <div class="work-topline"><span class="work-num">{num}</span></div>
+
+    <div class="work-name-row">
+      {
+        isExternal ? (
+          <Fragment>
+            <a class="work-name" href={url} target="_blank" rel="noopener">
+              {name}
+            </a>
+            <a
+              class="work-arrow"
+              href={url}
+              target="_blank"
+              rel="noopener"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              →
+            </a>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <span class="work-name">{name}</span>
+            <span class="work-arrow">→</span>
+          </Fragment>
+        )
+      }
+    </div>
+
+    <p class="work-desc">{description}</p>
+
+    <div class="work-tags">
+      {tags.map((t) => <span class="tag">{t}</span>)}
+    </div>
+  </div>
+</article>
+
+<style>
+  .work {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    background: #fff;
+    overflow: hidden;
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .work:hover {
+    border-color: var(--ink);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(14, 17, 22, 0.07);
+  }
+  .work:hover .work-name {
+    color: var(--accent);
+  }
+  .work:hover .work-arrow {
+    transform: translateX(6px);
+    color: var(--accent);
+  }
+
+  /* ─── Media ─── */
+  .work-media {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 20px;
+    align-items: end;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+    padding: 32px 32px 0;
+    height: 300px;
+    overflow: hidden;
+  }
+  /* wide (dashboard / POS) framing */
+  .work-media.wide {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+  /* solo: a single hero image, no side rail */
+  .work-media.solo {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .phone {
+    width: 100%;
+    max-width: 190px;
+    justify-self: center;
+    height: calc(100% - 32px);
+    align-self: end;
+    border: 6px solid var(--ink);
+    border-bottom: 0;
+    border-radius: 26px 26px 0 0;
+    background: #ededea;
+    overflow: hidden;
+    position: relative;
+  }
+  .screen {
+    width: 100%;
+    height: 100%;
+    border: 5px solid var(--ink);
+    border-bottom: 0;
+    border-radius: 12px 12px 0 0;
+    background: #ededea;
+    overflow: hidden;
+    position: relative;
+  }
+  .phone img,
+  .screen img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .side-shots {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    height: calc(100% - 24px);
+    align-self: end;
+    padding-bottom: 24px;
+  }
+  .wide .side-shots {
+    grid-template-rows: none;
+    grid-template-columns: 1fr 1fr;
+    height: 84px;
+    padding-bottom: 24px;
+  }
+  .side-shot {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--rule-2);
+  }
+
+  /* ─── Body ─── */
+  .work-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px 28px 28px;
+    flex: 1;
+  }
+  .work-topline {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .work-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.06em;
+  }
+  .work-name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .work-name {
+    font-family: var(--serif);
+    font-size: 28px;
+    line-height: 1.05;
+    transition: color 0.2s ease;
+  }
+  .work-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+  .work-arrow {
+    font-size: 20px;
+    color: var(--ink-mute);
+    transition:
+      transform 0.25s ease,
+      color 0.2s ease;
+  }
+
+  @media (max-width: 600px) {
+    .work-media {
+      padding: 24px 20px 0;
+      height: 240px;
+      gap: 14px;
+    }
+    .work-body {
+      padding: 20px 20px 24px;
+    }
+  }
+</style>
