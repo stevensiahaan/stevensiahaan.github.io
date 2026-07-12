@@ -2,6 +2,7 @@
 import cv from "../collections/cv.json";
 import experiences from "../collections/experiences.json";
 import projects from "../collections/projects.json";
+import WorkCard from "../components/work-card.astro";
 import Layout from "../layouts/main.astro";
 
 if (!cv.fileId || cv.fileId.trim() === "") {
@@ -14,28 +15,6 @@ const buildDriveDownloadUrl = (fileId: string): string =>
 	`https://drive.google.com/uc?export=download&id=${fileId}`;
 
 const cvDownloadUrl = buildDriveDownloadUrl(cv.fileId);
-
-const workTags: Record<string, string[]> = {
-	"WhatsApp Channel Automation": ["Hermes", "WAHA", "Automation"],
-	Wellsy: ["Flutter", "AI", "Health"],
-	"Runchise POS": ["Flutter", "POS", "Bluetooth"],
-	"Skul.id": ["Flutter", "EdTech", "BLoC"],
-	"Andal Linkage": ["Flutter", "HRIS", "Geo"],
-	Baboo: ["Android", "Firebase", "Payments"],
-};
-
-const workBlurbs: Record<string, string> = {
-	Wellsy:
-		"Digitises gym body composition, tracks progress, and surfaces AI-powered insights.",
-	"Runchise POS":
-		"Cross-platform point-of-sale for hundreds of franchises — Android, iOS, Windows.",
-	"Skul.id":
-		"A school platform for attendance, grades, schedules & virtual classrooms.",
-	"Andal Linkage":
-		"Mobile HRIS for location-based attendance, leave, permits and medical claims.",
-	Baboo:
-		"A creative platform for reading, writing, and selling original stories & comics.",
-};
 
 const expTags: string[][] = [
 	["AI", "Mobile", "CV"],
@@ -180,27 +159,18 @@ const expRewrites: { role: string; company: string; description: string }[] = [
           <h2 class="section-title">Products I've helped <em>ship.</em></h2>
         </div>
 
-        <div class="work-list">
+        <div class="work-grid">
           {
             projects.map((project, i) => (
-              <a
-                class="work"
-                href={project.url}
-                target={project.url.startsWith("http") ? "_blank" : undefined}
-                rel={project.url.startsWith("http") ? "noopener" : undefined}
-              >
-                <span class="work-num">{String(i + 1).padStart(2, "0")}</span>
-                <span class="work-name">{project.name}</span>
-                <span class="work-desc">
-                  {workBlurbs[project.name] ?? project.description}
-                </span>
-                <span class="work-tags">
-                  {(workTags[project.name] ?? []).map((t) => (
-                    <span class="tag">{t}</span>
-                  ))}
-                </span>
-                <span class="work-arrow">→</span>
-              </a>
+              <WorkCard
+                name={project.name}
+                description={project.description}
+                url={project.url}
+                frame={project.frame as "phone" | "wide"}
+                images={project.images}
+                tags={project.tags}
+                index={i}
+              />
             ))
           }
         </div>
@@ -634,70 +604,15 @@ const expRewrites: { role: string; company: string; description: string }[] = [
     gap: 6px;
   }
 
-  /* ─── Work list ─── */
-  .work-list {
-    display: flex;
-    flex-direction: column;
-  }
-  .work {
+  /* ─── Work grid ─── */
+  .work-grid {
     display: grid;
-    grid-template-columns: 60px 1fr 280px 200px 60px;
-    gap: 32px;
-    padding: 28px 0;
-    align-items: center;
-    border-top: 1px solid var(--rule);
-    transition: padding 0.25s ease;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
-  .work:last-child {
-    border-bottom: 1px solid var(--rule);
-  }
-  .work:hover {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  .work:hover .work-name {
-    color: var(--accent);
-  }
-  .work:hover .work-arrow {
-    transform: translateX(8px);
-    color: var(--accent);
-  }
-  .work-num {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--ink-mute);
-  }
-  .work-name {
-    font-family: var(--serif);
-    font-size: clamp(24px, 3vw, 36px);
-    line-height: 1;
-    transition: color 0.2s ease;
-  }
-  .work-desc {
-    font-size: 13px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-  }
-  .work-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .work-arrow {
-    text-align: right;
-    font-size: 22px;
-    color: var(--ink-mute);
-    transition:
-      transform 0.25s ease,
-      color 0.2s ease;
-  }
-  @media (max-width: 1100px) {
-    .work {
-      grid-template-columns: 50px 1fr 50px;
-    }
-    .work-desc,
-    .work-tags {
-      display: none;
+  @media (max-width: 900px) {
+    .work-grid {
+      grid-template-columns: 1fr;
     }
   }
 
