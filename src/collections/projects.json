@@ -2,49 +2,65 @@
 	{
 		"name": "WhatsApp Channel Automation",
 		"description": "An automated WhatsApp channel delivering daily AI news and updates — content sourced, summarized, and published end-to-end with Hermes and WAHA.",
-		"image": "/assets/images/projects/whatsapp-ai-channel.png",
-		"url": "https://whatsapp.com/channel/0029Vb5wchg60eBWja1uj83K"
+		"url": "https://whatsapp.com/channel/0029Vb5wchg60eBWja1uj83K",
+		"frame": "wide",
+		"images": ["/assets/images/projects/whatsapp-ai-channel.png"],
+		"tags": ["Hermes", "WAHA", "Automation"]
 	},
 	{
 		"name": "Hedz Psikologi",
 		"description": "An online psychology assessment platform for intelligence, personality, and mental-health tests — from the Intelligence Structure Test to depression, anxiety, and stress screening — guided by professional psychologists.",
-		"image": "/assets/images/projects/hedz.png",
-		"url": "https://hedzpsikologi.com/"
+		"url": "https://hedzpsikologi.com/",
+		"frame": "wide",
+		"images": ["/assets/images/projects/hedz.png"],
+		"tags": ["Web", "Psychology", "Assessment"]
 	},
 	{
 		"name": "EIRA",
 		"description": "Internal generative AI platform for Mitsubishi Group: conversational chat, RAG-powered regulation search, image generation, automated meeting minutes, and document translation.",
-		"image": "/assets/images/projects/eira.png",
-		"url": "https://eira.bsi.co.id/"
+		"url": "https://eira.bsi.co.id/",
+		"frame": "wide",
+		"images": [],
+		"tags": ["GenAI", "RAG", "Azure"]
 	},
 	{
 		"name": "Wellsy",
-		"description": "Digitize gym body composition, track progress, set goals, and get AI-powered insights for a healthier life.",
-		"image": "/assets/images/projects/wellsy.png",
-		"url": "https://wellsy.site/"
+		"description": "Digitises gym body composition, tracks progress, and surfaces AI-powered insights.",
+		"url": "https://wellsy.site/",
+		"frame": "phone",
+		"images": ["/assets/images/projects/wellsy.png"],
+		"tags": ["Flutter", "AI", "Health"]
 	},
 	{
 		"name": "Runchise POS",
-		"description": "A platform connecting entrepreneurs with franchise opportunities, providing resources and support for success in the franchising industry.",
-		"image": "/assets/images/projects/runchise.jpg",
-		"url": "https://play.google.com/store/apps/details?id=com.runchise.pos"
+		"description": "Cross-platform point-of-sale for hundreds of franchises — Android, iOS, Windows.",
+		"url": "https://play.google.com/store/apps/details?id=com.runchise.pos",
+		"frame": "wide",
+		"images": ["/assets/images/projects/runchise.jpg"],
+		"tags": ["Flutter", "POS", "Bluetooth"]
 	},
 	{
 		"name": "Skul.id",
-		"description": "A school management platform streamlining attendance, grades, schedules, and virtual classrooms for students, teachers, and parents.",
-		"image": "/assets/images/projects/skulid.webp",
-		"url": "https://play.google.com/store/apps/details?id=co.id.telkomsel"
+		"description": "A school platform for attendance, grades, schedules & virtual classrooms.",
+		"url": "https://play.google.com/store/apps/details?id=co.id.telkomsel",
+		"frame": "phone",
+		"images": ["/assets/images/projects/skulid.webp"],
+		"tags": ["Flutter", "EdTech", "BLoC"]
 	},
 	{
 		"name": "Andal Linkage",
-		"description": "A mobile HRIS app for location-based attendance, leave requests, permits, and medical claims management.",
-		"image": "/assets/images/projects/andal_linkage.webp",
-		"url": "#"
+		"description": "Mobile HRIS for location-based attendance, leave, permits and medical claims.",
+		"url": "#",
+		"frame": "phone",
+		"images": ["/assets/images/projects/andal_linkage.webp"],
+		"tags": ["Flutter", "HRIS", "Geo"]
 	},
 	{
 		"name": "Baboo",
-		"description": "A creative platform for reading, writing, and selling original stories and comics, built by local talent for the community.",
-		"image": "/assets/images/projects/baboo.png",
-		"url": "#"
+		"description": "A creative platform for reading, writing, and selling original stories & comics.",
+		"url": "#",
+		"frame": "phone",
+		"images": ["/assets/images/projects/baboo.png"],
+		"tags": ["Android", "Firebase", "Payments"]
 	}
 ]
