@@ -44,7 +44,9 @@ const mediaClass = [
         {sideShots.length > 0 && (
           <div class="side-shots">
             {sideShots.map((src) => (
-              <img class="side-shot" src={src} alt="" loading="lazy" />
+              <div class="side-shot">
+                <img src={src} alt="" loading="lazy" />
+              </div>
             ))}
           </div>
         )}
@@ -125,6 +127,7 @@ const mediaClass = [
   .work-media {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
+    grid-template-rows: 1fr;
     gap: 20px;
     align-items: end;
     background: var(--surface);
@@ -180,27 +183,39 @@ const mediaClass = [
     object-position: top center;
   }
 
+  /* tracks follow the number of side shots, so one shot fills the rail
+     rather than leaving an empty second slot */
   .side-shots {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-auto-rows: 1fr;
     gap: 12px;
     height: calc(100% - 24px);
+    min-height: 0;
     align-self: end;
     padding-bottom: 24px;
   }
   .wide .side-shots {
-    grid-template-rows: none;
-    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: auto;
     height: 84px;
-    padding-bottom: 24px;
   }
+  /* like the bezels, the shot is a positioned frame holding an absolute
+     image — an in-flow <img> would contribute its intrinsic height and
+     blow the rail past the media area's fixed height */
   .side-shot {
-    width: 100%;
-    height: 100%;
+    position: relative;
     min-height: 0;
-    object-fit: cover;
+    overflow: hidden;
     border-radius: 10px;
     border: 1px solid var(--rule-2);
+  }
+  .side-shot img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   /* ─── Body ─── */
