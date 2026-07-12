@@ -129,6 +129,9 @@ const mediaClass = [
   /* wide (dashboard / POS) framing */
   .work-media.wide {
     grid-template-columns: 1fr;
+  }
+  /* a wide card only needs its second row when a side rail is present */
+  .work-media.wide:not(.solo) {
     grid-template-rows: 1fr auto;
   }
   /* solo: a single hero image, no side rail */
