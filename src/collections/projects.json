@@ -20,7 +20,7 @@
 		"description": "Internal generative AI platform for Mitsubishi Group: conversational chat, RAG-powered regulation search, image generation, automated meeting minutes, and document translation.",
 		"url": "https://eira.bsi.co.id/",
 		"frame": "wide",
-		"images": [],
+		"images": ["/assets/images/projects/eira.png"],
 		"tags": ["GenAI", "RAG", "Azure"]
 	},
 	{
