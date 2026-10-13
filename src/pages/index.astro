@@ -16,45 +16,36 @@ const buildDriveDownloadUrl = (fileId: string): string =>
 
 const cvDownloadUrl = buildDriveDownloadUrl(cv.fileId);
 
-const expTags: string[][] = [
-	["AI", "Mobile", "CV"],
-	["Flutter", "POS", "Hardware"],
-	["Flutter", "EdTech", "BLoC"],
-	["Flutter", "HRIS"],
-	["Android", "Payments"],
-	["Android", "Logistics"],
-];
-
 const expRewrites: { role: string; company: string; description: string }[] = [
 	{
 		role: "AI Engineer & Senior Software Engineer",
 		company: "PT. Berlian Sistem Informasi",
 		description:
-			"Delivered AI-driven solutions for the Mitsubishi Group — a ChatGPT-class conversational platform with MOM automation, company-specific knowledge delivery, and multilingual translation. Built a CV mobile app that detects bird-droppings on vehicles for paint-damage prevention. Shipped multiple R&D PoCs.",
+			"Delivered AI-driven solutions for the Mitsubishi Group — a ChatGPT-class conversational platform with MOM automation, company-specific knowledge delivery, and multilingual translation. Built a CV mobile app that detects bird-droppings on vehicles for paint-damage prevention.",
 	},
 	{
 		role: "Flutter Developer",
 		company: "Runchise",
 		description:
-			"Built a cross-platform Point-of-Sale app for Android, iOS, and Windows — used by hundreds of franchises. Integrated Bluetooth printers, iMin customer displays, and cash drawers. Delivered the Runchise Back-Office app to support operations.",
+			"Built a cross-platform Point-of-Sale app for Android, iOS, and Windows — used by hundreds of franchises. Integrated Bluetooth printers, iMin customer displays, and cash drawers.",
 	},
 	{
 		role: "Mobile Developer",
 		company: "Telkomsel · Skul.id",
 		description:
-			"Owned features for Attendance, Permits, Ebook, Scheduling, and Score across three roles — Student, Parent, and Teacher. BLoC architecture on Flutter, Firebase for the moving parts.",
+			"Owned features for Attendance, Permits, Ebook, Scheduling, and Score across Student, Parent, and Teacher roles. BLoC architecture on Flutter, Firebase for the moving parts.",
 	},
 	{
 		role: "Mobile Developer",
 		company: "PT. Andal Software Sejahtera",
 		description:
-			"Refactored the entire HRIS app onto clean architectural patterns while preserving legacy code paths. Built Andal Connect from scratch in Flutter for cross-platform delivery.",
+			"Refactored the entire HRIS app onto clean architectural patterns while preserving legacy code paths. Built Andal Connect from scratch in Flutter.",
 	},
 	{
 		role: "Android Developer",
 		company: "PT. Baboo Teknologi Indonesia",
 		description:
-			"Built an Android app for generating and reading user-written stories, with Midtrans payments integrated for the marketplace. MVP architecture, Firebase backend.",
+			"Built an Android app for generating and reading user-written stories, with Midtrans payments integrated for the marketplace.",
 	},
 	{
 		role: "Android Developer",
@@ -63,6 +54,17 @@ const expRewrites: { role: string; company: string; description: string }[] = [
 			"Designed and delivered a Tracking Management System for logistics operators, plus a customer-facing companion app for booking deliveries.",
 	},
 ];
+
+const tools: { mono: string; name: string }[] = [
+	{ mono: "Fl", name: "Flutter" },
+	{ mono: "Da", name: "Dart" },
+	{ mono: "Kt", name: "Kotlin" },
+	{ mono: "Sw", name: "Swift" },
+	{ mono: "Fb", name: "Firebase" },
+	{ mono: "Py", name: "Python" },
+	{ mono: "AI", name: "LLM Apps" },
+	{ mono: "BL", name: "BLoC" },
+];
 ---
 
 <Layout title="Steven Siahaan — Mobile Developer">
@@ -70,15 +72,13 @@ const expRewrites: { role: string; company: string; description: string }[] = [
     <!-- ── Hero ── -->
     <section class="hero">
       <div class="frame">
-        <h1 class="display">
-          Software engineer &amp; <em>AI</em> engineer, building products that
-          ship.
-        </h1>
+        <span class="hero-eyebrow">Software engineer &amp; AI engineer</span>
+        <h1 class="display">Building products that ship.</h1>
 
         <p class="hero-sub">
-          I'm <strong>Steven Siahaan</strong> — a Jakarta-based engineer with a
-          decade of experience shipping Flutter, Android, and iOS products. Today
-          I split my time between mobile, AI engineering, and product work for
+          I'm Steven Siahaan — a Jakarta-based engineer with a decade of
+          experience shipping Flutter, Android, and iOS products. Today I
+          split my time between mobile, AI engineering, and product work for
           teams that want to ship the right thing well.
         </p>
 
@@ -86,7 +86,9 @@ const expRewrites: { role: string; company: string; description: string }[] = [
           <a class="btn" href="#work"
             >View selected work <span class="arrow">→</span></a
           >
-          <a class="btn btn-ghost" href="#contact">Start a project</a>
+          <a class="btn btn-ghost" href="#contact"
+            >Start a project <span class="arrow">→</span></a
+          >
         </div>
 
         <div class="strip">
@@ -116,22 +118,22 @@ const expRewrites: { role: string; company: string; description: string }[] = [
         <div class="about-grid">
           <div class="about-body">
             <p>
-              <strong
-                >I build mobile software that people use at work, every day.</strong
-              > Point-of-sale terminals across hundreds of franchises. School platforms
-              used by students, parents, and teachers. HRIS apps that quietly handle
-              attendance and leave for thousands of employees.
+              I build mobile software that people use at work, every day.
+              Point-of-sale terminals across hundreds of franchises. School
+              platforms used by students, parents, and teachers. HRIS apps
+              that quietly handle attendance and leave for thousands of
+              employees.
             </p>
             <p>
-              The throughline of ten years has been the same:
-              <strong>shipping cross-platform products that don't break</strong>
-              — and lately, doing it alongside AI tooling that makes teams faster.
+              The throughline of ten years has been the same: shipping
+              cross-platform products that don't break — and lately, doing
+              it alongside AI tooling that makes teams faster.
             </p>
             <p>
               I'm currently an AI Engineer &amp; Senior Software Engineer at
-              PT. Berlian Sistem Informasi, where I deliver AI-driven solutions
-              for the Mitsubishi Group — including a ChatGPT-class conversational
-              platform and computer-vision mobile apps.
+              PT. Berlian Sistem Informasi, where I deliver AI-driven
+              solutions for the Mitsubishi Group — including a ChatGPT-class
+              conversational platform and computer-vision mobile apps.
             </p>
           </div>
 
@@ -140,7 +142,10 @@ const expRewrites: { role: string; company: string; description: string }[] = [
               <dt>Based in</dt>
               <dd>Jakarta, Indonesia · UTC+7</dd>
               <dt>Currently</dt>
-              <dd>AI Engineer &amp; Senior Software Engineer, PT. Berlian Sistem Informasi</dd>
+              <dd>
+                AI Engineer &amp; Senior Software Engineer, PT. Berlian
+                Sistem Informasi
+              </dd>
               <dt>Focus</dt>
               <dd>Mobile · AI · Product</dd>
               <dt>Open to</dt>
@@ -156,7 +161,7 @@ const expRewrites: { role: string; company: string; description: string }[] = [
       <div class="frame">
         <div class="section-head">
           <span class="section-eyebrow">02 · Selected work</span>
-          <h2 class="section-title">Products I've helped <em>ship.</em></h2>
+          <h2 class="section-title">Products I've helped ship.</h2>
         </div>
 
         <div class="work-grid">
@@ -166,8 +171,7 @@ const expRewrites: { role: string; company: string; description: string }[] = [
                 name={project.name}
                 description={project.description}
                 url={project.url}
-                frame={project.frame as "phone" | "wide"}
-                images={project.images}
+                image={project.image}
                 tags={project.tags}
                 index={i}
               />
@@ -182,7 +186,7 @@ const expRewrites: { role: string; company: string; description: string }[] = [
       <div class="frame">
         <div class="section-head">
           <span class="section-eyebrow">03 · Capabilities</span>
-          <h2 class="section-title">What I can <em>help with.</em></h2>
+          <h2 class="section-title">What I can help with.</h2>
         </div>
 
         <div class="caps">
@@ -190,14 +194,10 @@ const expRewrites: { role: string; company: string; description: string }[] = [
             <div class="cap-num">a.</div>
             <h3 class="cap-title">Flutter, end-to-end</h3>
             <p class="cap-desc">
-              Greenfield architecture (BLoC, Riverpod), hardware integrations —
-              Bluetooth printers, customer displays, cash drawers — and
+              Greenfield architecture (BLoC, Riverpod), hardware integrations
+              — Bluetooth printers, customer displays, cash drawers — and
               production retail deployments.
             </p>
-            <div class="cap-tags">
-              <span class="tag">Flutter</span><span class="tag">Dart</span
-              ><span class="tag">BLoC</span><span class="tag">Firebase</span>
-            </div>
           </article>
           <article class="cap">
             <div class="cap-num">b.</div>
@@ -206,35 +206,24 @@ const expRewrites: { role: string; company: string; description: string }[] = [
               Kotlin and Swift when the platform demands it — payment
               integrations, MVP/MVVM refactors, offline-first patterns.
             </p>
-            <div class="cap-tags">
-              <span class="tag">Kotlin</span><span class="tag">Swift</span
-              ><span class="tag">Jetpack</span><span class="tag">Midtrans</span>
-            </div>
           </article>
           <article class="cap">
             <div class="cap-num">c.</div>
             <h3 class="cap-title">AI engineering</h3>
             <p class="cap-desc">
-              Conversational platforms in the spirit of ChatGPT, retrieval over
-              private corpora, MOM automation, and multilingual document
-              translation.
+              Conversational platforms in the spirit of ChatGPT, retrieval
+              over private corpora, MOM automation, and multilingual
+              document translation.
             </p>
-            <div class="cap-tags">
-              <span class="tag">LLM Apps</span><span class="tag">RAG</span
-              ><span class="tag">CV</span><span class="tag">Agents</span>
-            </div>
           </article>
           <article class="cap">
             <div class="cap-num">d.</div>
             <h3 class="cap-title">Product management</h3>
             <p class="cap-desc">
               Scoping, roadmapping, and standing between engineers and
-              stakeholders so the right thing ships — not just the loudest one.
+              stakeholders so the right thing ships — not just the loudest
+              one.
             </p>
-            <div class="cap-tags">
-              <span class="tag">Discovery</span><span class="tag">Specs</span
-              ><span class="tag">Delivery</span>
-            </div>
           </article>
           <article class="cap">
             <div class="cap-num">e.</div>
@@ -243,23 +232,41 @@ const expRewrites: { role: string; company: string; description: string }[] = [
               Fast, opinionated PoCs that prove the idea before the budget.
               R&amp;D-grade software the team can demo on Monday.
             </p>
-            <div class="cap-tags">
-              <span class="tag">Prototyping</span><span class="tag">R&amp;D</span
-              ><span class="tag">Demos</span>
-            </div>
           </article>
           <article class="cap">
             <div class="cap-num">f.</div>
             <h3 class="cap-title">Cross-platform delivery</h3>
             <p class="cap-desc">
-              Single codebases across Android, iOS, and Windows — for franchise
-              networks where downtime is measured in revenue lost.
+              Single codebases across Android, iOS, and Windows — for
+              franchise networks where downtime is measured in revenue lost.
             </p>
-            <div class="cap-tags">
-              <span class="tag">POS</span><span class="tag">Retail</span
-              ><span class="tag">Hardware I/O</span>
-            </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tools ── -->
+    <section class="section" id="tools">
+      <div class="frame">
+        <div class="section-head">
+          <span class="section-eyebrow">04 · Tools I use</span>
+          <h2 class="section-title">Tools I reach for.</h2>
+        </div>
+
+        <p class="tools-desc">
+          The tools I reach for when building mobile and AI products — day
+          in, day out.
+        </p>
+
+        <div class="tools-grid">
+          {
+            tools.map((tool) => (
+              <div class="tool">
+                <span class="tool-mono">{tool.mono}</span>
+                <span class="tool-name">{tool.name}</span>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -268,8 +275,8 @@ const expRewrites: { role: string; company: string; description: string }[] = [
     <section class="section" id="experience">
       <div class="frame">
         <div class="section-head">
-          <span class="section-eyebrow">04 · Experience</span>
-          <h2 class="section-title">Where I've <em>worked.</em></h2>
+          <span class="section-eyebrow">05 · Experience</span>
+          <h2 class="section-title">Where I've worked.</h2>
         </div>
 
         <div class="exp-list">
@@ -288,11 +295,6 @@ const expRewrites: { role: string; company: string; description: string }[] = [
                     <div class="exp-company">{rw.company}</div>
                     <p class="exp-desc">{rw.description}</p>
                   </div>
-                  <div class="exp-tags">
-                    {(expTags[i] ?? []).map((t) => (
-                      <span class="tag">{t}</span>
-                    ))}
-                  </div>
                 </article>
               );
             })
@@ -304,13 +306,12 @@ const expRewrites: { role: string; company: string; description: string }[] = [
     <!-- ── CV ── -->
     <section class="section" id="cv">
       <div class="frame">
-        <div class="section-head">
-          <span class="section-eyebrow">05 · CV</span>
-          <h2 class="section-title">Grab the <em>CV.</em></h2>
-        </div>
-
-        <div class="cv-grid">
-          <p class="cv-blurb">{cv.description}</p>
+        <div class="cv-card">
+          <div class="cv-left">
+            <span class="section-eyebrow">06 · CV</span>
+            <h2 class="cv-heading">Grab the CV.</h2>
+            <p class="cv-blurb">{cv.description}</p>
+          </div>
           <a
             class="btn"
             href={cvDownloadUrl}
@@ -328,53 +329,52 @@ const expRewrites: { role: string; company: string; description: string }[] = [
   <!-- ── Contact ── -->
   <section class="contact" id="contact">
     <div class="frame">
-      <div class="contact-grid">
-        <div>
-          <span class="section-eyebrow">06 · Contact</span>
-          <h2 class="contact-title">
-            Have something worth <em>building?</em>
-          </h2>
-          <p class="contact-blurb">
-            I take on a small number of mobile and AI engagements each year —
-            full-time, contract, or advisory. The fastest path is email; LinkedIn
-            works too.
-          </p>
-          <a class="btn" href="mailto:stevenjhsiahaan@gmail.com"
-            >Email me <span class="arrow">→</span></a
+      <span class="section-eyebrow">07 · Contact</span>
+      <h2 class="contact-title">Have something worth building?</h2>
+      <p class="contact-blurb">
+        I take on a small number of mobile and AI engagements each year —
+        full-time, contract, or advisory. The fastest path is email;
+        LinkedIn works too.
+      </p>
+      <a class="btn" href="mailto:stevenjhsiahaan@gmail.com"
+        >Email me <span class="arrow">→</span></a
+      >
+
+      <div class="contact-links">
+        <a class="ch" href="mailto:stevenjhsiahaan@gmail.com">
+          <span class="ch-label">Email</span>
+          <span class="ch-value"
+            >stevenjhsiahaan@gmail.com <span class="ch-arrow">↗</span></span
           >
-        </div>
-        <div class="contact-channels">
-          <a class="ch" href="mailto:stevenjhsiahaan@gmail.com">
-            <span class="ch-label">Email</span>
-            <span class="ch-value">stevenjhsiahaan@gmail.com</span>
-            <span class="ch-arrow">↗</span>
-          </a>
-          <a
-            class="ch"
-            href="https://linkedin.com/in/stevensiahaan"
-            target="_blank"
-            rel="noopener"
+        </a>
+        <a
+          class="ch"
+          href="https://linkedin.com/in/stevensiahaan"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="ch-label">LinkedIn</span>
+          <span class="ch-value"
+            >/in/stevensiahaan <span class="ch-arrow">↗</span></span
           >
-            <span class="ch-label">LinkedIn</span>
-            <span class="ch-value">/in/stevensiahaan</span>
-            <span class="ch-arrow">↗</span>
-          </a>
-          <a
-            class="ch"
-            href="https://github.com/stevensiahaan"
-            target="_blank"
-            rel="noopener"
+        </a>
+        <a
+          class="ch"
+          href="https://github.com/stevensiahaan"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="ch-label">GitHub</span>
+          <span class="ch-value"
+            >@stevensiahaan <span class="ch-arrow">↗</span></span
           >
-            <span class="ch-label">GitHub</span>
-            <span class="ch-value">@stevensiahaan</span>
-            <span class="ch-arrow">↗</span>
-          </a>
-          <a class="ch" href="#">
-            <span class="ch-label">Location</span>
-            <span class="ch-value">Jakarta, Indonesia</span>
-            <span class="ch-arrow">↗</span>
-          </a>
-        </div>
+        </a>
+        <a class="ch" href="#">
+          <span class="ch-label">Location</span>
+          <span class="ch-value"
+            >Jakarta, Indonesia <span class="ch-arrow">↗</span></span
+          >
+        </a>
       </div>
     </div>
   </section>
@@ -386,39 +386,24 @@ const expRewrites: { role: string; company: string; description: string }[] = [
     padding: 120px 0 100px;
     border-bottom: 1px solid var(--rule);
   }
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+  .hero-eyebrow {
+    display: block;
     font-family: var(--mono);
-    font-size: 12px;
-    color: var(--ink-soft);
-    margin-bottom: 32px;
-    padding: 6px 12px 6px 10px;
-    border: 1px solid var(--rule);
-    border-radius: 999px;
-    background: var(--surface);
-  }
-  .hero-tag .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #2eaa63;
-    box-shadow: 0 0 0 4px rgba(46, 170, 99, 0.18);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 28px;
   }
   h1.display {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(48px, 7vw, 96px);
+    font-size: clamp(48px, 7vw, 72px);
     line-height: 1.02;
     letter-spacing: -0.025em;
-    margin: 0 0 32px;
+    margin: 0 0 28px;
     max-width: 18ch;
     text-wrap: balance;
-  }
-  h1.display em {
-    font-style: italic;
-    color: var(--accent);
   }
   .hero-sub {
     font-size: 18px;
@@ -490,15 +475,11 @@ const expRewrites: { role: string; company: string; description: string }[] = [
   .section-title {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(32px, 4.4vw, 56px);
+    font-size: clamp(32px, 4.4vw, 52px);
     line-height: 1.05;
     letter-spacing: -0.02em;
     margin: 0;
     max-width: 22ch;
-  }
-  .section-title :global(em) {
-    font-style: italic;
-    color: var(--accent);
   }
 
   /* ─── About ─── */
@@ -519,10 +500,6 @@ const expRewrites: { role: string; company: string; description: string }[] = [
     color: var(--ink-soft);
     margin: 0 0 18px;
     max-width: 56ch;
-  }
-  .about-body :global(p strong) {
-    color: var(--ink);
-    font-weight: 500;
   }
   .about-side {
     border: 1px solid var(--rule);
@@ -551,11 +528,23 @@ const expRewrites: { role: string; company: string; description: string }[] = [
     color: var(--ink);
   }
 
+  /* ─── Work grid ─── */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+  }
+  @media (max-width: 900px) {
+    .work-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* ─── Capabilities ─── */
   .caps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 40px 32px;
   }
   @media (max-width: 900px) {
     .caps {
@@ -567,17 +556,6 @@ const expRewrites: { role: string; company: string; description: string }[] = [
       grid-template-columns: 1fr;
     }
   }
-  .cap {
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-    padding: 28px;
-    background: #fff;
-    transition: all 0.2s ease;
-  }
-  .cap:hover {
-    border-color: var(--ink);
-    transform: translateY(-2px);
-  }
   .cap-num {
     font-family: var(--mono);
     font-size: 11px;
@@ -588,32 +566,62 @@ const expRewrites: { role: string; company: string; description: string }[] = [
   .cap-title {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: 24px;
-    line-height: 1.2;
+    font-size: 25px;
+    line-height: 1.1;
     margin: 0 0 12px;
   }
   .cap-desc {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.6;
     color: var(--ink-soft);
-    margin: 0 0 20px;
-  }
-  .cap-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    margin: 0;
   }
 
-  /* ─── Work grid ─── */
-  .work-grid {
+  /* ─── Tools ─── */
+  .tools-desc {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0 0 40px;
+  }
+  .tools-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
   }
   @media (max-width: 900px) {
-    .work-grid {
-      grid-template-columns: 1fr;
+    .tools-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
+  }
+  @media (max-width: 600px) {
+    .tools-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 116px;
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    background: #fff;
+  }
+  .tool-mono {
+    font-family: var(--serif);
+    font-size: 26px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .tool-name {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
   }
 
   /* ─── Experience ─── */
@@ -623,11 +631,10 @@ const expRewrites: { role: string; company: string; description: string }[] = [
   }
   .exp {
     display: grid;
-    grid-template-columns: 140px 1fr 220px;
+    grid-template-columns: 150px 1fr;
     gap: 40px;
     padding: 28px 0;
     border-top: 1px solid var(--rule);
-    align-items: baseline;
   }
   .exp:last-child {
     border-bottom: 1px solid var(--rule);
@@ -641,8 +648,8 @@ const expRewrites: { role: string; company: string; description: string }[] = [
   .exp-role {
     font-family: var(--serif);
     font-size: 22px;
-    line-height: 1.2;
-    margin: 0 0 4px;
+    line-height: 1.15;
+    margin: 0 0 6px;
     font-weight: 400;
   }
   .exp-company {
@@ -658,41 +665,50 @@ const expRewrites: { role: string; company: string; description: string }[] = [
     max-width: 60ch;
     margin: 0;
   }
-  .exp-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-self: start;
-  }
   @media (max-width: 900px) {
     .exp {
       grid-template-columns: 1fr;
       gap: 8px;
     }
-    .exp-tags {
-      display: none;
-    }
   }
 
   /* ─── CV ─── */
-  .cv-grid {
-    display: grid;
-    grid-template-columns: 1.4fr auto;
-    gap: 64px;
+  .cv-card {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    gap: 48px;
+    padding: 48px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
   }
-  .cv-blurb {
-    font-size: 17px;
-    line-height: 1.65;
-    color: var(--ink-soft);
-    max-width: 56ch;
+  .cv-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 560px;
+  }
+  .cv-heading {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
     margin: 0;
   }
-  @media (max-width: 900px) {
-    .cv-grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
+  .cv-blurb {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  @media (max-width: 720px) {
+    .cv-card {
+      flex-direction: column;
       align-items: start;
+      padding: 32px;
+      gap: 28px;
     }
   }
 
@@ -702,57 +718,34 @@ const expRewrites: { role: string; company: string; description: string }[] = [
     background: var(--surface);
     border-bottom: 1px solid var(--rule);
   }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 64px;
-    align-items: end;
-  }
-  @media (max-width: 900px) {
-    .contact-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-  }
   .contact-title {
     font-family: var(--serif);
-    font-size: clamp(40px, 6vw, 80px);
-    line-height: 1;
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 1.05;
     letter-spacing: -0.025em;
-    margin: 0 0 24px;
+    margin: 20px 0 24px;
     font-weight: 400;
-    max-width: 14ch;
-  }
-  .contact-title :global(em) {
-    font-style: italic;
-    color: var(--accent);
+    max-width: 16ch;
   }
   .contact-blurb {
     font-size: 16px;
     line-height: 1.6;
     color: var(--ink-soft);
-    max-width: 50ch;
+    max-width: 640px;
     margin: 0 0 32px;
   }
-  .contact-channels {
-    display: flex;
-    flex-direction: column;
+  .contact-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 32px;
+    margin-top: 64px;
   }
   .ch {
-    display: grid;
-    grid-template-columns: 90px 1fr 24px;
-    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
     padding: 18px 4px;
     border-top: 1px solid var(--rule);
-    align-items: center;
-    transition: padding 0.25s ease;
-  }
-  .ch:last-child {
-    border-bottom: 1px solid var(--rule);
-  }
-  .ch:hover {
-    padding-left: 12px;
-    padding-right: 12px;
   }
   .ch:hover .ch-arrow {
     transform: translateX(4px);
@@ -768,12 +761,20 @@ const expRewrites: { role: string; company: string; description: string }[] = [
   .ch-value {
     font-size: 16px;
     color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
   .ch-arrow {
     color: var(--ink-mute);
     transition:
       transform 0.2s ease,
       color 0.2s ease;
-    font-size: 16px;
+    font-size: 14px;
+  }
+  @media (max-width: 600px) {
+    .contact-links {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

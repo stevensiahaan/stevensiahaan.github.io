@@ -3,64 +3,56 @@
 		"name": "WhatsApp Channel Automation",
 		"description": "An automated WhatsApp channel delivering daily AI news and updates — content sourced, summarized, and published end-to-end with Hermes and WAHA.",
 		"url": "https://whatsapp.com/channel/0029Vb5wchg60eBWja1uj83K",
-		"frame": "wide",
-		"images": ["/assets/images/projects/whatsapp-ai-channel.png"],
+		"image": "/assets/images/projects/whatsapp-ai-channel.png",
 		"tags": ["Hermes", "WAHA", "Automation"]
 	},
 	{
 		"name": "Hedz Psikologi",
-		"description": "An online psychology assessment platform for intelligence, personality, and mental-health tests — from the Intelligence Structure Test to depression, anxiety, and stress screening — guided by professional psychologists.",
+		"description": "An online psychology assessment platform for intelligence, personality, and mental-health tests — guided by professional psychologists.",
 		"url": "https://hedzpsikologi.com/",
-		"frame": "wide",
-		"images": ["/assets/images/projects/hedz.png"],
+		"image": "/assets/images/projects/hedz.png",
 		"tags": ["Web", "Psychology", "Assessment"]
 	},
 	{
 		"name": "EIRA",
-		"description": "Internal generative AI platform for Mitsubishi Group: conversational chat, RAG-powered regulation search, image generation, automated meeting minutes, and document translation.",
+		"description": "Internal generative AI platform for Mitsubishi Group: conversational chat, RAG-powered regulation search, image generation, meeting minutes, and document translation.",
 		"url": "https://eira.bsi.co.id/",
-		"frame": "wide",
-		"images": ["/assets/images/projects/eira.png"],
+		"image": "/assets/images/projects/eira.png",
 		"tags": ["GenAI", "RAG", "Azure"]
 	},
 	{
 		"name": "Wellsy",
 		"description": "Digitises gym body composition, tracks progress, and surfaces AI-powered insights.",
 		"url": "https://wellsy.site/",
-		"frame": "phone",
-		"images": ["/assets/images/projects/wellsy.png"],
+		"image": "/assets/images/projects/wellsy.png",
 		"tags": ["Flutter", "AI", "Health"]
 	},
 	{
 		"name": "Runchise POS",
 		"description": "Cross-platform point-of-sale for hundreds of franchises — Android, iOS, Windows.",
 		"url": "https://play.google.com/store/apps/details?id=com.runchise.pos",
-		"frame": "wide",
-		"images": ["/assets/images/projects/runchise.jpg"],
+		"image": "/assets/images/projects/runchise.jpg",
 		"tags": ["Flutter", "POS", "Bluetooth"]
 	},
 	{
 		"name": "Skul.id",
 		"description": "A school platform for attendance, grades, schedules & virtual classrooms.",
 		"url": "https://play.google.com/store/apps/details?id=co.id.telkomsel",
-		"frame": "phone",
-		"images": ["/assets/images/projects/skulid.webp"],
+		"image": "/assets/images/projects/skulid.webp",
 		"tags": ["Flutter", "EdTech", "BLoC"]
 	},
 	{
 		"name": "Andal Linkage",
 		"description": "Mobile HRIS for location-based attendance, leave, permits and medical claims.",
 		"url": "#",
-		"frame": "phone",
-		"images": ["/assets/images/projects/andal_linkage.webp"],
+		"image": "/assets/images/projects/andal_linkage.webp",
 		"tags": ["Flutter", "HRIS", "Geo"]
 	},
 	{
 		"name": "Baboo",
 		"description": "A creative platform for reading, writing, and selling original stories & comics.",
 		"url": "#",
-		"frame": "phone",
-		"images": ["/assets/images/projects/baboo.png"],
+		"image": "/assets/images/projects/baboo.png",
 		"tags": ["Android", "Firebase", "Payments"]
 	}
 ]

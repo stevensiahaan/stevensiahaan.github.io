@@ -3,252 +3,82 @@ interface Props {
 	name: string;
 	description: string;
 	url: string;
-	frame?: "phone" | "wide";
-	images?: string[];
+	image?: string;
 	tags?: string[];
 	index: number;
 }
 
-const {
-	name,
-	description,
-	url,
-	frame = "phone",
-	images = [],
-	tags = [],
-	index,
-} = Astro.props;
+const { name, description, url, image, tags = [], index } = Astro.props;
 
-const [hero, ...sideShots] = images;
 const isExternal = url.startsWith("http");
 const num = String(index + 1).padStart(2, "0");
-
-const cardClass = hero ? "work" : "work no-media";
-
-const mediaClass = [
-	"work-media",
-	frame === "wide" && "wide",
-	sideShots.length === 0 && "solo",
-]
-	.filter(Boolean)
-	.join(" ");
 ---
 
-<article class={cardClass}>
+<article class="work">
   {
-    hero && (
-      <div class={mediaClass}>
-        <div class={frame === "wide" ? "screen" : "phone"}>
-          <img src={hero} alt={`${name} — screenshot`} loading="lazy" />
-        </div>
-        {sideShots.length > 0 && (
-          <div class="side-shots">
-            {sideShots.map((src) => (
-              <div class="side-shot">
-                <img src={src} alt="" loading="lazy" />
-              </div>
-            ))}
-          </div>
-        )}
+    image && (
+      <div class="work-media">
+        <img src={image} alt={`${name} — screenshot`} loading="lazy" />
       </div>
     )
   }
 
-  <div class="work-body">
-    <div class="work-topline"><span class="work-num">{num}</span></div>
+  <span class="work-num">{num}</span>
 
-    <div class="work-name-row">
-      {
-        isExternal ? (
-          <Fragment>
-            <a class="work-name" href={url} target="_blank" rel="noopener">
-              {name}
-            </a>
-            <a
-              class="work-arrow"
-              href={url}
-              target="_blank"
-              rel="noopener"
-              aria-hidden="true"
-              tabindex="-1"
-            >
-              →
-            </a>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <span class="work-name">{name}</span>
-            <span class="work-arrow">→</span>
-          </Fragment>
-        )
-      }
-    </div>
+  {
+    isExternal ? (
+      <a class="work-name" href={url} target="_blank" rel="noopener">
+        {name}
+      </a>
+    ) : (
+      <span class="work-name">{name}</span>
+    )
+  }
 
-    <p class="work-desc">{description}</p>
+  <p class="work-desc">{description}</p>
 
-    <div class="work-tags">
-      {tags.map((t) => <span class="tag">{t}</span>)}
-    </div>
-  </div>
+  {tags.length > 0 && <p class="work-tags">{tags.join(" · ")}</p>}
 </article>
 
 <style>
   .work {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--rule);
-    border-radius: 14px;
-    background: #fff;
-    overflow: hidden;
-    transition:
-      border-color 0.2s ease,
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-  .work:hover {
-    border-color: var(--ink);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(14, 17, 22, 0.07);
-  }
-  .work:hover .work-name {
-    color: var(--accent);
-  }
-  .work:hover .work-arrow {
-    transform: translateX(6px);
-    color: var(--accent);
-  }
-  /* a card with no screenshot hugs its content instead of being
-     stretched to match an image-bearing neighbour */
-  .work.no-media {
-    align-self: start;
+    gap: 14px;
   }
 
-  /* ─── Media ─── */
   .work-media {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 20px;
-    align-items: end;
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--rule);
     background: var(--surface);
-    border-bottom: 1px solid var(--rule);
-    padding: 32px 32px 0;
-    height: 300px;
-    overflow: hidden;
   }
-  /* wide (dashboard / POS) framing */
-  .work-media.wide {
-    grid-template-columns: 1fr;
-  }
-  /* a wide card only needs its second row when a side rail is present */
-  .work-media.wide:not(.solo) {
-    grid-template-rows: 1fr auto;
-  }
-  /* solo: a single hero image, no side rail */
-  .work-media.solo {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-  }
-
-  .phone {
-    width: 100%;
-    max-width: 190px;
-    justify-self: center;
-    height: calc(100% - 32px);
-    align-self: end;
-    border: 6px solid var(--ink);
-    border-bottom: 0;
-    border-radius: 26px 26px 0 0;
-    background: #ededea;
-    overflow: hidden;
-    position: relative;
-  }
-  .screen {
-    width: 100%;
-    height: 100%;
-    border: 5px solid var(--ink);
-    border-bottom: 0;
-    border-radius: 12px 12px 0 0;
-    background: #ededea;
-    overflow: hidden;
-    position: relative;
-  }
-  .phone img,
-  .screen img {
-    position: absolute;
-    inset: 0;
+  .work-media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
+    transition: transform 0.3s ease;
+  }
+  .work:hover .work-media img {
+    transform: scale(1.03);
   }
 
-  /* tracks follow the number of side shots, so one shot fills the rail
-     rather than leaving an empty second slot */
-  .side-shots {
-    display: grid;
-    grid-auto-rows: 1fr;
-    gap: 12px;
-    height: calc(100% - 24px);
-    min-height: 0;
-    align-self: end;
-    padding-bottom: 24px;
-  }
-  .wide .side-shots {
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-    grid-auto-rows: auto;
-    height: 84px;
-  }
-  /* like the bezels, the shot is a positioned frame holding an absolute
-     image — an in-flow <img> would contribute its intrinsic height and
-     blow the rail past the media area's fixed height */
-  .side-shot {
-    position: relative;
-    min-height: 0;
-    overflow: hidden;
-    border-radius: 10px;
-    border: 1px solid var(--rule-2);
-  }
-  .side-shot img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* ─── Body ─── */
-  .work-body {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 24px 28px 28px;
-    flex: 1;
-  }
-  .work-topline {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-  }
   .work-num {
     font-family: var(--mono);
     font-size: 11px;
     color: var(--ink-mute);
-    letter-spacing: 0.06em;
-  }
-  .work-name-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    letter-spacing: 0.08em;
   }
   .work-name {
     font-family: var(--serif);
-    font-size: 28px;
-    line-height: 1.05;
+    font-size: 27px;
+    line-height: 1.1;
     transition: color 0.2s ease;
+  }
+  .work:hover .work-name {
+    color: var(--accent);
   }
   .work-desc {
     font-size: 14px;
@@ -257,28 +87,10 @@ const mediaClass = [
     margin: 0;
   }
   .work-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: auto;
-    padding-top: 8px;
-  }
-  .work-arrow {
-    font-size: 20px;
+    font-family: var(--mono);
+    font-size: 11px;
     color: var(--ink-mute);
-    transition:
-      transform 0.25s ease,
-      color 0.2s ease;
-  }
-
-  @media (max-width: 600px) {
-    .work-media {
-      padding: 24px 20px 0;
-      height: 240px;
-      gap: 14px;
-    }
-    .work-body {
-      padding: 20px 20px 24px;
-    }
+    letter-spacing: 0.02em;
+    margin: 0;
   }
 </style>
