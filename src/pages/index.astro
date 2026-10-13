@@ -110,13 +110,13 @@ const tools: { mono: string; name: string }[] = [
     <!-- ── About ── -->
     <section class="section" id="about">
       <div class="frame">
-        <div class="section-head">
-          <span class="section-eyebrow">01 · About</span>
-          <h2 class="section-title">A short introduction.</h2>
-        </div>
-
         <div class="about-grid">
-          <div class="about-body">
+          <div class="about-left">
+            <span class="section-eyebrow">01 · About</span>
+            <h2 class="section-title">A short introduction.</h2>
+          </div>
+
+          <div class="about-right">
             <p>
               I build mobile software that people use at work, every day.
               Point-of-sale terminals across hundreds of franchises. School
@@ -135,23 +135,35 @@ const tools: { mono: string; name: string }[] = [
               solutions for the Mitsubishi Group — including a ChatGPT-class
               conversational platform and computer-vision mobile apps.
             </p>
-          </div>
 
-          <aside class="about-side">
-            <dl>
-              <dt>Based in</dt>
-              <dd>Jakarta, Indonesia · UTC+7</dd>
-              <dt>Currently</dt>
-              <dd>
-                AI Engineer &amp; Senior Software Engineer, PT. Berlian
-                Sistem Informasi
-              </dd>
-              <dt>Focus</dt>
-              <dd>Mobile · AI · Product</dd>
-              <dt>Open to</dt>
-              <dd>Full-time, contract, advisory</dd>
-            </dl>
-          </aside>
+            <div class="about-meta">
+              <div class="meta-row">
+                <div class="meta-item">
+                  <span class="meta-label">Based in</span>
+                  <span class="meta-value">Jakarta, Indonesia · UTC+7</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Currently</span>
+                  <span class="meta-value"
+                    >AI Engineer &amp; Senior Software Engineer, PT. Berlian
+                    Sistem Informasi</span
+                  >
+                </div>
+              </div>
+              <div class="meta-row">
+                <div class="meta-item">
+                  <span class="meta-label">Focus</span>
+                  <span class="meta-value">Mobile · AI · Product</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Open to</span>
+                  <span class="meta-value"
+                    >Full-time, contract, advisory</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -418,6 +430,15 @@ const tools: { mono: string; name: string }[] = [
     flex-wrap: wrap;
     align-items: center;
   }
+  @media (max-width: 600px) {
+    .cta-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .cta-row :global(.btn) {
+      justify-content: center;
+    }
+  }
 
   .strip {
     display: flex;
@@ -485,47 +506,65 @@ const tools: { mono: string; name: string }[] = [
   /* ─── About ─── */
   .about-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 80px;
+    grid-template-columns: 360px 1fr;
+    gap: 48px;
   }
   @media (max-width: 900px) {
     .about-grid {
       grid-template-columns: 1fr;
-      gap: 48px;
+      gap: 32px;
     }
   }
-  .about-body :global(p) {
+  .about-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .about-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .about-right p {
     font-size: 17px;
     line-height: 1.65;
     color: var(--ink-soft);
-    margin: 0 0 18px;
-    max-width: 56ch;
-  }
-  .about-side {
-    border: 1px solid var(--rule);
-    background: var(--surface);
-    border-radius: 12px;
-    padding: 28px;
-    align-self: start;
-  }
-  .about-side dl {
     margin: 0;
+    max-width: 62ch;
   }
-  .about-side dt {
+  .about-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-top: 8px;
+  }
+  .meta-row {
+    display: flex;
+    gap: 32px;
+  }
+  .meta-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .meta-label {
     font-family: var(--mono);
     font-size: 11px;
     color: var(--ink-mute);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin-top: 16px;
   }
-  .about-side dt:first-child {
-    margin-top: 0;
-  }
-  .about-side dd {
-    margin: 4px 0 0;
+  .meta-value {
     font-size: 15px;
+    line-height: 1.45;
     color: var(--ink);
+  }
+  @media (max-width: 600px) {
+    .meta-row {
+      flex-direction: column;
+      gap: 20px;
+    }
   }
 
   /* ─── Work grid ─── */
@@ -576,6 +615,14 @@ const tools: { mono: string; name: string }[] = [
     color: var(--ink-soft);
     margin: 0;
   }
+  @media (max-width: 600px) {
+    .cap-title {
+      font-size: 22px;
+    }
+    .cap-desc {
+      font-size: 14px;
+    }
+  }
 
   /* ─── Tools ─── */
   .tools-desc {
@@ -587,17 +634,13 @@ const tools: { mono: string; name: string }[] = [
   }
   .tools-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     gap: 16px;
   }
   @media (max-width: 900px) {
     .tools-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  @media (max-width: 600px) {
-    .tools-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
     }
   }
   .tool {
@@ -611,17 +654,34 @@ const tools: { mono: string; name: string }[] = [
     border-radius: 20px;
     background: #fff;
   }
+  @media (max-width: 900px) {
+    .tool {
+      height: 88px;
+      border-radius: 16px;
+      gap: 5px;
+    }
+  }
   .tool-mono {
     font-family: var(--serif);
     font-size: 26px;
     line-height: 1;
     color: var(--ink);
   }
+  @media (max-width: 900px) {
+    .tool-mono {
+      font-size: 22px;
+    }
+  }
   .tool-name {
     font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 0.04em;
     color: var(--ink-mute);
+  }
+  @media (max-width: 900px) {
+    .tool-name {
+      font-size: 9px;
+    }
   }
 
   /* ─── Experience ─── */
@@ -706,9 +766,15 @@ const tools: { mono: string; name: string }[] = [
   @media (max-width: 720px) {
     .cv-card {
       flex-direction: column;
-      align-items: start;
+      align-items: stretch;
       padding: 32px;
-      gap: 28px;
+      gap: 24px;
+    }
+    .cv-heading {
+      font-size: 32px;
+    }
+    .cv-card :global(.btn) {
+      justify-content: center;
     }
   }
 
@@ -775,6 +841,10 @@ const tools: { mono: string; name: string }[] = [
   @media (max-width: 600px) {
     .contact-links {
       grid-template-columns: 1fr;
+    }
+    .contact :global(.btn) {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>
